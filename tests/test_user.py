@@ -49,15 +49,15 @@ def test_get_unexisted_user():
     
     
     
-    def test_create_user_with_valid_email():
-     '''Cоздание пользователя с уникальной почтой'''
-     new_user = {
+def test_create_user_with_valid_email():
+    '''Создание пользователя с уникальной почтой'''
+    new_user = {
         'name': 'Sanjar Sanjarovich',
         'email': 's.s.sanjarov@mail.com'
     }
     response = client.post("/api/v1/user", json=new_user)
     assert response.status_code == 201
-    assert isinstance(response.json(), int)  # возвращается ID
+    assert isinstance(response.json(), int)
     
     # Проверяем, что пользователь действительно создался
     get_response = client.get("/api/v1/user", params={'email': new_user['email']})
